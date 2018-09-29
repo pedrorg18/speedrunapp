@@ -11,6 +11,7 @@ import com.pedroroig.speedrunapp.R
 import com.pedroroig.speedrunapp.extensions.ctx
 import com.pedroroig.speedrunapp.extensions.toast
 import com.pedroroig.speedrunapp.model.entity.GameModel
+import com.pedroroig.speedrunapp.ui.glide.GlideApp
 
 class GameListAdapter(private var dataSet: List<GameModel>?): RecyclerView.Adapter<GameListAdapter.ViewHolder>() {
 
@@ -25,8 +26,11 @@ class GameListAdapter(private var dataSet: List<GameModel>?): RecyclerView.Adapt
         Logger.i("onBindViewHolder: $vh position: $position")
         with(vh) {
             name.text = dataSet?.get(position)?.name ?: ""
-            // FIXME IMPORT REMOTE IMAGE
-            image.setImageResource(R.drawable.ic_launcher_foreground)
+            GlideApp.with(viewRoot.ctx)
+                    .load(dataSet?.get(position)?.imageLocation)
+                    .placeholder(R.drawable.default_image)
+                    .into(image)
+
             viewRoot.setOnClickListener {
                 viewRoot.ctx.toast("click element ${dataSet!![position].id}")
             }
