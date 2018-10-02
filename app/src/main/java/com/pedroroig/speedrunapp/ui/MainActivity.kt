@@ -5,14 +5,14 @@ import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.pedroroig.speedrunapp.ui.adapters.GameListAdapter
-import com.pedroroig.speedrunapp.viewmodel.GameListListViewModelFactory
 import com.pedroroig.speedrunapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v7.widget.LinearLayoutManager
 import com.pedroroig.speedrunapp.Logger
 import com.pedroroig.speedrunapp.R
 import com.pedroroig.speedrunapp.model.entity.GameModel
-import com.pedroroig.speedrunapp.model.repository.GamesRepository
+import com.pedroroig.speedrunapp.data.repository.GamesRepository
+import com.pedroroig.speedrunapp.viewmodel.GameListViewModelFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        val factory = GameListListViewModelFactory(GamesRepository())
+        val factory = GameListViewModelFactory(GamesRepository())
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
         // If new data arrives, update view
         viewModel.getGames().observe(this, Observer { games ->

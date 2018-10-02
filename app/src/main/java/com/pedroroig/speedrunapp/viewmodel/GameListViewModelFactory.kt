@@ -3,9 +3,9 @@ package com.pedroroig.speedrunapp.viewmodel
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 
-import com.pedroroig.speedrunapp.model.repository.GamesRepository
+import com.pedroroig.speedrunapp.data.repository.GamesRepository
 
-class GameListListViewModelFactory(
+class GameListViewModelFactory(
     private val repository: GamesRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
