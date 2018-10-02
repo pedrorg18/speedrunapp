@@ -18,4 +18,4 @@ fun mockGame1() =
     fun mockRun() = RunModel(
             "https://youtu.be/-Vesbd8uJzE",
             "user",
-            435)
+            435F)

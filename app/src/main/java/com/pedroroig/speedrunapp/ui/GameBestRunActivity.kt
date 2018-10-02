@@ -15,6 +15,7 @@ import com.pedroroig.speedrunapp.viewmodel.GameBestRunViewModelFactory
 import kotlinx.android.synthetic.main.activity_game_best_run.*
 import android.content.Intent
 import android.net.Uri
+import java.text.DecimalFormat
 
 
 class GameBestRunActivity : AppCompatActivity() {
@@ -47,10 +48,18 @@ class GameBestRunActivity : AppCompatActivity() {
     private fun updateUi(run: RunModel?) {
         Logger.i("run: $run")
         textViewUserName.text = run?.userName ?: ""
-        textViewBestTime.text = run?.bestTime.toString()
+        textViewBestTime.text = formatTime(run?.bestTime)
         loadVideoButton.setOnClickListener {
             loadVideo(run?.videoLocation)
         }
+    }
+
+    private fun formatTime(bestTime: Float?): String {
+        if(bestTime != null) {
+            val format = DecimalFormat("0.#")
+            return format.format(bestTime)
+        }
+        return ""
     }
 
     private fun loadVideo(videoLocation: String?) {

@@ -7,18 +7,6 @@ data class GamesListNetworkEntity(
         val pagination: Pagination
 )
 
-data class Pagination(
-        val offset: Int,
-        val max: Int,
-        val size: Int,
-        val links: List<Link>
-)
-
-data class Link(
-        val rel: String,
-        val uri: String
-)
-
 data class GameNetworkEntity(
         val id: String,
         val names: Names,
@@ -37,12 +25,6 @@ data class GameNetworkEntity(
         val created: String,
         val assets: Assets,
         val links: List<Link>
-)
-
-data class Names(
-        val international: String,
-        val japanese: Any,
-        val twitch: String
 )
 
 
