@@ -1,5 +1,6 @@
 package com.pedroroig.speedrunapp.ui.adapters
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,10 @@ import android.widget.TextView
 import com.pedroroig.speedrunapp.Logger
 import com.pedroroig.speedrunapp.R
 import com.pedroroig.speedrunapp.extensions.ctx
-import com.pedroroig.speedrunapp.extensions.toast
 import com.pedroroig.speedrunapp.domain.entity.GameModel
-import com.pedroroig.speedrunapp.ui.glide.GlideApp
+import com.pedroroig.speedrunapp.ui.EXTRA_GAME_ENTITY
+import com.pedroroig.speedrunapp.ui.GameBestRunActivity
+import com.pedroroig.speedrunapp.ui.glide.showImage
 
 class GameListAdapter(private var dataSet: List<GameModel>?): RecyclerView.Adapter<GameListAdapter.ViewHolder>() {
 
@@ -26,13 +28,12 @@ class GameListAdapter(private var dataSet: List<GameModel>?): RecyclerView.Adapt
         Logger.i("onBindViewHolder: $vh position: $position")
         with(vh) {
             name.text = dataSet?.get(position)?.name ?: ""
-            GlideApp.with(viewRoot.ctx)
-                    .load(dataSet?.get(position)?.imageLocation)
-                    .placeholder(R.drawable.default_image)
-                    .into(image)
+            showImage(dataSet?.get(position)?.imageLocation, image)
 
             viewRoot.setOnClickListener {
-                viewRoot.ctx.toast("click element ${dataSet!![position].id}")
+                val intent = Intent(viewRoot.ctx, GameBestRunActivity::class.java)
+                intent.putExtra(EXTRA_GAME_ENTITY, dataSet?.get(position))
+                viewRoot.ctx.startActivity(intent)
             }
         }
     }

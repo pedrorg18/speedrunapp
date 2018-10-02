@@ -3,6 +3,7 @@ package com.pedroroig.speedrunapp.domain.repository
 import com.pedroroig.speedrunapp.data.network.RetrofitManager
 import com.pedroroig.speedrunapp.data.network.entity.GamesListNetworkEntity
 import com.pedroroig.speedrunapp.domain.entity.GameModel
+import com.pedroroig.speedrunapp.domain.entity.RunModel
 import com.pedroroig.speedrunapp.domain.mapper.GameNetworkToDomainMapper
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
@@ -12,6 +13,9 @@ import io.reactivex.schedulers.Schedulers
 
 
 class GamesRepository : IGamesRepository {
+    override fun findBestRun(gameId: String, observer: SingleObserver<RunModel>) {
+        // TODO IMPLEMENT!!
+    }
 
     override fun findAll(observer: SingleObserver<List<GameModel>>) {
         val retrofitManager = RetrofitManager()
