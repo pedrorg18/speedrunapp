@@ -1,5 +1,6 @@
 package com.pedroroig.speedrunapp.data.network
 
+import com.pedroroig.speedrunapp.data.network.endpoints.GamesListService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
@@ -26,6 +27,6 @@ class RetrofitManager {
                     .build()
 
     fun getGamesListService(): GamesListService =
-        getRetrofit().create(GamesListService::class.java)
+            getRetrofit().create(GamesListService::class.java)
 
 }
