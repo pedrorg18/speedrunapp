@@ -2,4 +2,7 @@
     <string name="app_name">SpeedRunApp</string>
     <string name="game_logo_image_content_desc">Game logo</string>
     <string name="game_name_mock">Some Game</string>
+    <string name="view_video">View Video</string>
+    <string name="user_name">User Name:</string>
+    <string name="best_time">Best Time:</string>
 </resources>
