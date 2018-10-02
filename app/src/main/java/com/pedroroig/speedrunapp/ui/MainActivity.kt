@@ -11,7 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.pedroroig.speedrunapp.Logger
 import com.pedroroig.speedrunapp.R
 import com.pedroroig.speedrunapp.domain.entity.GameModel
-import com.pedroroig.speedrunapp.domain.repository.GamesRepository
+import com.pedroroig.speedrunapp.extensions.toast
 import com.pedroroig.speedrunapp.viewmodel.GameListViewModelFactory
 
 
@@ -38,11 +38,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        val factory = GameListViewModelFactory(GamesRepository())
+        val factory = GameListViewModelFactory()
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
         // If new data arrives, update view
         viewModel.getGames().observe(this, Observer { games ->
             updateUi(games)
+        })
+        viewModel.getError().observe(this, Observer { msg ->
+            toast("Error: $msg")
         })
     }
 
