@@ -44,6 +44,9 @@ class GamesRepository : IGamesRepository {
                 })
     }
 
+    /**
+     *  Gets the best run for a given game. If Succeeds, it retrieves the user name by the id
+     */
     override fun findBestRun(gameId: String, observer: SingleObserver<RunModel>) {
         val retrofitManager = RetrofitManager()
 
@@ -63,7 +66,8 @@ class GamesRepository : IGamesRepository {
                             findUserName(userId,
                                     object : SingleObserver<UserModel> {
 
-                                        override fun onSuccess(gameList: UserModel) {
+                                        override fun onSuccess(userModel: UserModel) {
+                                            runModel.userName = userModel.name
                                             val observable: Single<RunModel> = Single.just(runModel)
                                             observable.subscribe(observer)
                                         }
@@ -79,7 +83,6 @@ class GamesRepository : IGamesRepository {
                             val observable: Single<RunModel> = Single.just(runModel)
                             observable.subscribe(observer)
                         }
-
                     }
 
                     override fun onError(e: Throwable) {
