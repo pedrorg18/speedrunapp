@@ -13,6 +13,8 @@ import com.pedroroig.speedrunapp.ui.glide.showImage
 import com.pedroroig.speedrunapp.viewmodel.GameBestRunViewModel
 import com.pedroroig.speedrunapp.viewmodel.GameBestRunViewModelFactory
 import kotlinx.android.synthetic.main.activity_game_best_run.*
+import android.content.Intent
+import android.net.Uri
 
 
 class GameBestRunActivity : AppCompatActivity() {
@@ -46,6 +48,19 @@ class GameBestRunActivity : AppCompatActivity() {
         Logger.i("run: $run")
         textViewUserName.text = run?.userName ?: ""
         textViewBestTime.text = run?.bestTime.toString()
+        loadVideoButton.setOnClickListener {
+            loadVideo(run?.videoLocation)
+        }
+    }
+
+    private fun loadVideo(videoLocation: String?) {
+        if(videoLocation != null) {
+            val webIntent = Intent(Intent.ACTION_VIEW,
+                    Uri.parse(videoLocation))
+            startActivity(webIntent)
+        } else {
+            toast("Error loading video")
+        }
     }
 
 }
