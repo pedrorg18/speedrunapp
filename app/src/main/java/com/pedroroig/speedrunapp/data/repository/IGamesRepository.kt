@@ -1,6 +1,6 @@
 package com.pedroroig.speedrunapp.data.repository
 
-import com.pedroroig.speedrunapp.model.entity.GameModel
+import com.pedroroig.speedrunapp.domain.entity.GameModel
 
 interface IGamesRepository {
 

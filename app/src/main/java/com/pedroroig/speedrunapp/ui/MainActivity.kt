@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v7.widget.LinearLayoutManager
 import com.pedroroig.speedrunapp.Logger
 import com.pedroroig.speedrunapp.R
-import com.pedroroig.speedrunapp.model.entity.GameModel
+import com.pedroroig.speedrunapp.domain.entity.GameModel
 import com.pedroroig.speedrunapp.data.repository.GamesRepository
 import com.pedroroig.speedrunapp.viewmodel.GameListViewModelFactory
 

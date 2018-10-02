@@ -10,7 +10,7 @@ import com.pedroroig.speedrunapp.Logger
 import com.pedroroig.speedrunapp.R
 import com.pedroroig.speedrunapp.extensions.ctx
 import com.pedroroig.speedrunapp.extensions.toast
-import com.pedroroig.speedrunapp.model.entity.GameModel
+import com.pedroroig.speedrunapp.domain.entity.GameModel
 import com.pedroroig.speedrunapp.ui.glide.GlideApp
 
 class GameListAdapter(private var dataSet: List<GameModel>?): RecyclerView.Adapter<GameListAdapter.ViewHolder>() {

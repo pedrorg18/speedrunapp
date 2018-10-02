@@ -1,6 +1,6 @@
-package com.pedroroig.speedrunapp.model.mock
+package com.pedroroig.speedrunapp.domain.mock
 
-import com.pedroroig.speedrunapp.model.entity.GameModel
+import com.pedroroig.speedrunapp.domain.entity.GameModel
 
     fun mockGame1() =
             GameModel("ID1","Super Mario Bros",

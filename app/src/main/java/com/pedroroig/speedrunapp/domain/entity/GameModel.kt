@@ -1,4 +1,4 @@
-package com.pedroroig.speedrunapp.model.entity
+package com.pedroroig.speedrunapp.domain.entity
 
 data class GameModel(
         val id: String,
