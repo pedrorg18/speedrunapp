@@ -15,6 +15,8 @@ import com.pedroroig.speedrunapp.viewmodel.GameBestRunViewModelFactory
 import kotlinx.android.synthetic.main.activity_game_best_run.*
 import android.content.Intent
 import android.net.Uri
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import java.text.DecimalFormat
 
 
@@ -31,6 +33,7 @@ class GameBestRunActivity : AppCompatActivity() {
         showImage(gameModel.imageLocation, bestRunGameLogo)
 
         initViewModel(gameModel.id)
+        spinnerLoader.visibility = VISIBLE
     }
 
     private fun initViewModel(gameId: String) {
@@ -39,9 +42,11 @@ class GameBestRunActivity : AppCompatActivity() {
         // If new data arrives, update view
         viewModel.getBestRun().observe(this, Observer { bestRun ->
             updateUi(bestRun)
+            spinnerLoader.visibility = GONE
         })
         viewModel.getError().observe(this, Observer { msg ->
             toast("Error: $msg")
+            spinnerLoader.visibility = GONE
         })
     }
 
@@ -57,7 +62,7 @@ class GameBestRunActivity : AppCompatActivity() {
     private fun formatTime(bestTime: Float?): String {
         if(bestTime != null) {
             val format = DecimalFormat("0.#")
-            return format.format(bestTime)
+            return "${format.format(bestTime)} seconds"
         }
         return ""
     }

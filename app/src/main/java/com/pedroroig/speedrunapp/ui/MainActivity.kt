@@ -8,6 +8,7 @@ import com.pedroroig.speedrunapp.ui.adapters.GameListAdapter
 import com.pedroroig.speedrunapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.pedroroig.speedrunapp.Logger
 import com.pedroroig.speedrunapp.R
 import com.pedroroig.speedrunapp.domain.entity.GameModel
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         initRecyclerView()
 
         initViewModel()
+
+        spinnerLoaderMain.visibility = View.VISIBLE
     }
 
     private fun initRecyclerView() {
@@ -45,9 +48,11 @@ class MainActivity : AppCompatActivity() {
         // If new data arrives, update view
         viewModel.getGames().observe(this, Observer { games ->
             updateUi(games)
+            spinnerLoaderMain.visibility = View.GONE
         })
         viewModel.getError().observe(this, Observer { msg ->
             toast("Error: $msg")
+            spinnerLoaderMain.visibility = View.GONE
         })
     }
 
